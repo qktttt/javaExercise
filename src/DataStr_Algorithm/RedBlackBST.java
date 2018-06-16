@@ -122,7 +122,7 @@ public class RedBlackBST<Key extends Comparable<Key>, Value>
     {
         return root == null;
     }
-S
+
     private Node deleteMin(Node h)
     {
         if(h.left == null)
