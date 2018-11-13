@@ -22,6 +22,29 @@ public class Sorting {
 		}
 	}
 
+	/* this is the non recursive version 
+	 * of the quicksort
+	 */ 
+	public static void quickSortIterative(Comparable[] a, int p, int r) {
+		ArrayList<Integer> start = new ArrayList<Integer>();
+		ArrayList<Integer> end = new Arraylist<Integer>();
+		start.add(p);
+		start.add(r);
+		int pointer = 0;
+		while (pointer >= 0) {
+			int from = start.get(start.size() - 1);
+			int to = end.get(end.size() - 1);
+			pointer--;
+			if (from < to) {
+				q = parition(a, from, to);
+				start.add(q + 1);
+				end.add(to)
+				start.add(from);
+				end.add(q - 1);
+			}
+		}
+	}
+
 	// in this method
 	// the quickSort3 will need to
 	// handle duplicate elelments 
