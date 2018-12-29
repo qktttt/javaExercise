@@ -34,7 +34,7 @@ public class Stack<T>
 		T result = root.value;
 		root = root.next;
 		size--;
-
+		return result;
 	}
 
 	public T peek()
@@ -53,7 +53,7 @@ public class Stack<T>
 		size = 0;
 	}
 
-	private class Node()
+	private class Node
 	{
 		T value;
 		Node next;
@@ -61,5 +61,15 @@ public class Stack<T>
 		{
 			value = input;
 		}
+	}
+
+	public static void main(String[] args) {
+		Stack newOne = new Stack<String>();
+		newOne.push("123");
+		newOne.push("234");
+		newOne.push("qwe");
+		System.out.println(newOne.pop());
+		System.out.println(newOne.pop());
+		System.out.println(newOne.pop());
 	}
 }
