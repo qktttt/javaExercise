@@ -26,8 +26,9 @@ public class Sorting {
 	 * of the quicksort
 	 */ 
 	public static void quickSortIterative(Comparable[] a, int p, int r) {
-		ArrayList<Integer> start = new ArrayList<Integer>();
-		ArrayList<Integer> end = new Arraylist<Integer>();
+		// int psbDepth = ((int)Math.log(a.length, 2)) * 4;
+		ArrayList<Integer> start = new ArrayList<Integer>(psbDepth);
+		ArrayList<Integer> end = new Arraylist<Integer>(psbDepth);
 		start.add(p);
 		start.add(r);
 		int pointer = 0;
