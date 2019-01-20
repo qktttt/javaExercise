@@ -23,19 +23,19 @@ public class matrixAlgo {
 		int tmp;
 		for (int i = 0; i < row1; i++) {
 			for (int a = 0; a < col2; a++) {
-				tmp = 0
+				tmp = 0;
 				for (int c = 0; c > col1; c++) {
 					tmp += first[i][c] * second[c][a];
 				}
-				result[i][a] = tmp
+				result[i][a] = tmp;
 			}
 		}
 
-		return result
+		return result;
 	}
 
 	public static double[][] addition(double[][] first, double[][] second) {
-		if (first.legnth != second.length || first[0].length != second[0].length)
+		if (first.length != second.length || first[0].length != second[0].length)
 			return null;
 		double[][] result = new double[first.length][first[0].length];
 		for (int i = 0; i < result.length; i++) {
@@ -48,7 +48,7 @@ public class matrixAlgo {
 	}
 
 	public static double[][] subtraction(double[][] first, double[][] second) {
-		if (first.legnth != second.length || first[0].length != second[0].length)
+		if (first.length != second.length || first[0].length != second[0].length)
 			return null;
 		double[][] result = new double[first.length][first[0].length];
 		for (int i = 0; i < result.length; i++) {
@@ -67,7 +67,7 @@ public class matrixAlgo {
 			for(int a = 0; a < matrix[0].length; a++)
 				result[a][i] = matrix[i][a];
 
-		return result
+		return result;
 	}
 
 	public static boolean isSquare(double[][] matrix) {
@@ -78,7 +78,7 @@ public class matrixAlgo {
 		return !(matrix.length == 0 || matrix[0].length == 0);
 	}
 
-	public static double[][] unitMatrix(double matrixLevel) {
+	public static double[][] unitMatrix(int matrixLevel) {
 		double[][] result = new double[matrixLevel][matrixLevel];
 		for(int i = 0; i < matrixLevel; i++)
 			result[i][i] = 1;
@@ -102,9 +102,9 @@ public class matrixAlgo {
 		for (int i = 0; i < first.length; i++) {
 			coefficient = first[i][i] / 1;
 			for (int a = i; a < first[i].length; a++)
-				first[i][a] / = coefficient
+				first[i][a] /= coefficient;
 			for (int a = 0; a  < second[i].length; a++)
-				second[i][a]  /= coefficient
+				second[i][a]  /= coefficient;
 			for (int below = i + 1; below < first.length; below++) {
 				coefficient = first[below][i] / 1;
 
@@ -121,8 +121,8 @@ public class matrixAlgo {
 
 				for(int a = above + 1; a < first[above].length; a++)
 					first[above][a] -= (coefficient * first[i][a]);
-				for(int a = 0; a < second[below].length; a++)
-					second[below][a] -= (coefficient * second[i][a]);	
+				for(int a = 0; a < second[above].length; a++)
+					second[above][a] -= (coefficient * second[i][a]);	
 			}
 		}
 	}
@@ -140,7 +140,7 @@ public class matrixAlgo {
 	}
 
 	public static double[][] copyMatrix(double[][] matrix) {
-		double[][] result = new double[matrix.length][matrix.length != 0 ? matrix.length[0] : 0];
+		double[][] result = new double[matrix.length][matrix.length != 0 ? matrix[0].length : 0];
 		
 		for(int i = 0; i < matrix.length; i++) 
 			for(int a = 0; a < matrix[0].length; a++)
@@ -150,22 +150,50 @@ public class matrixAlgo {
 	}
 
 	public static double getDet(double[][] matrix) {
-		double diagProd = 1;
-		double rDiagProd = 1;
-		
-		if (matrix.length == 0 || matrix[0].length == 0) return null;
+		double diagProdTotal = 0;
+		double rDiagProdTotal = 0;
+		double diagProd;
+		double rDiagProd;
+
+		if (matrix.length == 0 || matrix[0].length == 0) return Double.MIN_VALUE;
 		for (int i = 0; i < matrix.length; i++) {
+			diagProd = rDiagProd = 1;
 			for (int a = 0; a < matrix.length; a++) {
 				diagProd *= matrix[(i + a) % matrix.length][a];
-				rDiagProd *= matrix[(i - a) % matrix.length][a];
+				rDiagProd *= matrix[i - a < 0 ? matrix.length + i - a 
+									: i - a][a];
 			}
+			diagProdTotal += diagProd;
+			rDiagProdTotal += rDiagProd;
 		}
 
-		return diagProd - rDiagProd;
+		return diagProdTotal - rDiagProdTotal;
 	}
 
 	public static void main(String[] args) {
+		double[][] test = {{1, 1}, {0, 1}};
+		double[][] test1 = {{5}, {3}};
+		System.out.println(-2 % 6);
+		matrixConvert(test, test1);
+		printMatrix(test);
+		printMatrix(test1);
 
+
+		printMatrix(getInverseMatrix(new double[][] {
+			{1, 0, 0, 0},
+			{0, 2, 0, 0},
+			{0, 0, 3, 0},
+			{0, 0, 0, 4}
+		}));
+		double[][] test3 = new double[500][500];
+		for (int i = 0; i < 500; i++) test3[i][i] = i + 1;
+		//printMatrix(getInverseMatrix(test3));
+		printMatrix(getTMatrix(new double[][] {
+			{2, 0, 0, 0},
+			{0, 2, 0, 1},
+			{1, 0, 2, 0},
+			{0, 0, 0, 2}
+		}));
 	}
 }
 
